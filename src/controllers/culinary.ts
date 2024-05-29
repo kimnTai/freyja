@@ -83,7 +83,7 @@ export const updateCulinaryById: RequestHandler = async (req, res, next) => {
 
 export const deleteCulinaryById: RequestHandler = async (req, res, next) => {
     try {
-        const result = await CulinaryModel.findByIdAndRemove(req.params.id);
+        const result = await CulinaryModel.findByIdAndDelete(req.params.id);
         if (!result) {
             throw createHttpError(404, '此美味佳餚不存在');
         }

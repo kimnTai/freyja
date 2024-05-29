@@ -2,7 +2,7 @@ import { Schema, model, type Document } from 'mongoose';
 import validator from 'validator';
 import ZipCodeMap, { zipCodeList } from '@/utils/zipcodes';
 
-export interface IUser extends Document {
+export interface IUser extends Document<string> {
     name: string;
     email: string;
     password: string;

@@ -81,7 +81,7 @@ export const updateNewById: RequestHandler = async (req, res, next) => {
 
 export const deleteNewById: RequestHandler = async (req, res, next) => {
     try {
-        const result = await NewsModel.findByIdAndRemove(req.params.id);
+        const result = await NewsModel.findByIdAndDelete(req.params.id);
         if (!result) {
             throw createHttpError(404, '此最新消息不存在');
         }
