@@ -8,7 +8,8 @@ router.get('/', (req, res) => {
         message: 'OK',
         uptime: process.uptime(),
         timestamp: Date.now(),
-        host: req.headers.host
+        host: req.headers.host,
+        memoryUsage: process.memoryUsage()
     };
     res.send(healthCheck);
 });
