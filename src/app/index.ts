@@ -1,3 +1,4 @@
+import os from 'os';
 import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
@@ -22,6 +23,15 @@ app.use(Exception.catchCustomError);
 
 Exception.catchGlobalError();
 
-app.listen(process.env.PORT, () => {
-    console.log(`listening on http://localhost:${process.env.PORT}`);
+app.listen(process.env.PORT, '0.0.0.0', () => {
+    console.log(`Local:   http://localhost:${process.env.PORT}/`);
+
+    const networkInterfaces = os.networkInterfaces();
+    for (const networkInfo of Object.values(networkInterfaces)) {
+        networkInfo?.forEach(info => {
+            if (info.family === 'IPv4' && !info.internal) {
+                console.log(`Network: http://${info.address}:${process.env.PORT}/`);
+            }
+        });
+    }
 });
